@@ -4,7 +4,7 @@ import "./Footer.css";
 function Footer() {
   return (
     <footer className="footer">
-      <p>Integrantes del equipo: Zemborain, Dominguez, Goyanes</p>
+      <p>Integrantes del equipo: Zemborain- Dominguez, Goyanes</p>
     </footer>
   );
 }
