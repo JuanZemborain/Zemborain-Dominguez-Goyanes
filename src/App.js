@@ -6,6 +6,7 @@ import NotFound from "./screens/NotFound/NotFound"
 import Home from "./screens/Home/Home";
 import Movies from "./screens/Movies/Movies"
 import Detalle from "./screens/Detalle/Detalle";
+import SearchResults from "./screens/SearchResults/SearchResults"
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
           <Route path='/movies/:tipo' component={Movies} exact={true} />
 
           <Route path='' component={NotFound} exact={true} />
+
+          <Route path='/buscar' component={SearchResults}/>
 
         </Switch>
 
