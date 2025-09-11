@@ -15,10 +15,10 @@ class Header extends Component {
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/movies/popular">Películas populares</Link>
+              <Link className="nav-link" to="/movies/">Películas</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/movies/now_playing">Películas en cartel</Link>
+              <Link className="nav-link" to="/series/">Series</Link>
             </li>
 
             <li className="nav-item">
@@ -31,7 +31,7 @@ class Header extends Component {
             <button type="submit" className="btn btn-success btn-sm">Buscar</button>
           </form>
         </nav>
-        
+
       </React.Fragment>
     );
   }
