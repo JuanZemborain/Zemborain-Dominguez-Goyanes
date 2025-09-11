@@ -19,7 +19,7 @@ class ListaCard extends Component{
 
     render(){
         return(
-            <section class="row cards" id="movies">
+            <section className="row cards" id="movies">
                 {this.props.data.map((unaPeli, idx) => <Card data={unaPeli} key={idx} />)}
             </section>
         )

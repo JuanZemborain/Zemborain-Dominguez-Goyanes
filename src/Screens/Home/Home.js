@@ -1,6 +1,6 @@
 import { Component } from "react";
-import Header from "../../Components/Header/Header";
-import ListaCard from "../../Components/ListaCard/ListaCard";
+import Header from "../../components/Header/Header";
+import ListaCard from "../../components/ListaCard/ListaCard";
 import {Link} from 'react-router-dom'
 import React from "react";
 
