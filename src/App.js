@@ -1,12 +1,14 @@
 import './App.css';
 import { Switch, Route } from "react-router-dom"
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer"
-import NotFound from "./screens/NotFound/NotFound"
-import Home from "./screens/Home/Home";
-import Movies from "./screens/Movies/Movies"
-import Detalle from "./screens/Detalle/Detalle";
-import SearchResults from "./screens/SearchResults/SearchResults"
+import Header from "./Components/Header/Header";
+import Footer from "./Components/Footer/Footer"
+import NotFound from "./Screens/NotFound/NotFound"
+import Home from "./Screens/Home/Home";
+import Movies from "./Screens/Movies/Movies"
+import Detalle from "./Screens/Detalle/Detalle";
+import SearchResults from "./Screens/SearchResults/SearchResults";
+import MoviesPopular from "./Screens/MoviesPopular/Moviesp";
+import MoviesNow from "./Screens/MoviesNow/MoviesNow";
 
 function App() {
   return (
@@ -19,6 +21,10 @@ function App() {
           <Route path='/' component={Home} exact={true} />
           
           <Route path='/detalle/movie/:id' component={Detalle} exact={true} />
+
+          <Route path='/movies/popular' component={MoviesPopular} exact={true} />
+
+          <Route path='/movies/now_playing' component={MoviesNow}/>
 
           <Route path='/movies/:tipo' component={Movies} exact={true} />
 
