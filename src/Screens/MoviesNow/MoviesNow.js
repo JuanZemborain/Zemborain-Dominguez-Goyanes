@@ -12,11 +12,12 @@ class MoviesNow extends Component{
         this.state = {
             nowMovies: [],
             loaderNowMovies: true,
+            masPeliculas: 5,
+            search: " ",
         }
     }
 
     componentDidMount(){
-
         fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`)
         .then(res => res.json())
         .then(data => {
@@ -25,12 +26,40 @@ class MoviesNow extends Component{
 
     }
 
+    cargarMas = () => {
+        this.setState({
+            masPeliculas: this.state.masPeliculas + 5 
+        });
+    }
+
+    evitarSubmit(event){
+        event.preventDefault();
+    } 
+
+    controlarCambios(event){
+        this.setState({search: event.target.value})
+    }
+
+
     render(){
+
+        const texto = this.state.search.toLowerCase();
+        const peliculasFiltro = this.state.nowMovies.filter(pelicula => pelicula.overview.toLowerCase().includes(texto))
+
+        const peliculasAMostrar = peliculasFiltro.slice(0, this.state.masPeliculas) 
+
         return(
             <React.Fragment>
                 
-                <h2 class="alert alert-primary">Movies now playing <Link class='btn btn-primary' to='/movies/now_playing'> Ver mas peliculas nuevas </Link>  </h2>
-                {this.state.loaderNowMovies ? <p>Cargando...</p> : <ListaCard data={this.state.nowMovies} />}
+                <h2 class="alert alert-primary">Movies now playing </h2>
+                
+                <form onSubmit={(event)=>this.evitarSubmit(event)}>
+                    <input type="text" onChange={(event)=>this.controlarCambios(event)} value={this.state.search}/>
+                </form>
+
+                <button onClick={this.cargarMas} className="btn btn-primary">Cargar Más</button>
+                
+                {this.state.loaderNowMovies ? <p>Cargando...</p> : <ListaCard data={peliculasAMostrar} />}
 
 
             </React.Fragment>

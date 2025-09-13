@@ -11,7 +11,9 @@ class MoviesPopular extends Component{
         super(props);
         this.state = {
             popularMovies: [],
-            loaderPopularMovies: true
+            loaderPopularMovies: true,
+            masPeliculas: 5,
+            search: " ",
         }
     }
 
@@ -24,12 +26,40 @@ class MoviesPopular extends Component{
 
     }
 
+    cargarMas = () => {
+        this.setState({
+            masPeliculas: this.state.masPeliculas + 5 
+        });
+    }
+
+    evitarSubmit(event){
+        event.preventDefault();
+    } 
+
+    controlarCambios(event){
+        this.setState({search: event.target.value})
+    }
+
     render(){
+        
+        const texto = this.state.search.toLowerCase();
+        const peliculasFiltro = this.state.popularMovies.filter(pelicula => pelicula.overview.toLowerCase().includes(texto))
+
+        const peliculasAMostrar = peliculasFiltro.slice(0, this.state.masPeliculas) 
+  
+
         return(
             <React.Fragment>
 
-                <h2 class="alert alert-primary">Popular movies this week <Link  to='/movies/popular' class='btn btn-primary'> Ver mas peliculas populares </Link>  </h2>
-                {this.state.loaderPopularMovies ? <p>Cargando...</p> : <ListaCard data={this.state.popularMovies} />}
+                <h2 class="alert alert-primary">Popular movies this week</h2>
+
+                <form onSubmit={(event)=>this.evitarSubmit(event)}>
+                    <input type="text" onChange={(event)=>this.controlarCambios(event)} value={this.state.search}/>
+                </form>
+
+                <button onClick={this.cargarMas} className="btn btn-primary">Cargar Más</button>
+
+                {this.state.loaderPopularMovies ? <p>Cargando...</p> : <ListaCard data={peliculasAMostrar} />}
 
             </React.Fragment>
         )
