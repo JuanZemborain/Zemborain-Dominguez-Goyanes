@@ -35,6 +35,7 @@ class Home extends Component{
     render(){
         return(
             <React.Fragment>
+
                 <h2 class="alert alert-primary">Popular movies this week <Link  to='/movies/popular' class='btn btn-primary'> Ver mas peliculas populares </Link>  </h2>
                 {this.state.loaderPopularMovies ? <p>Cargando...</p> : <ListaCard data={this.state.popularMovies.slice(0,5)} />}
                 

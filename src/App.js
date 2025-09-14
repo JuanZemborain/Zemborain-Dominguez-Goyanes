@@ -24,13 +24,13 @@ function App() {
 
           <Route path='/movies/popular' component={MoviesPopular} exact={true} />
 
-          <Route path='/movies/now_playing' component={MoviesNow} exact={true}/>
+          <Route path='/movies/now_playing' component={MoviesNow} exact={true} />
 
           <Route path='/movies/:tipo' component={Movies} exact={true} />
 
-          <Route path='' component={NotFound} exact={true} />
+          <Route path='/buscar' component={SearchResults} />
 
-          <Route path='/buscar' component={SearchResults}/>
+          <Route component={NotFound} />
 
         </Switch>
 

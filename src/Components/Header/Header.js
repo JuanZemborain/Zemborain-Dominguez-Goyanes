@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
+import Formulario from '../../Components/Formulario/Formulario'
 
 class Header extends Component {
   render() {
@@ -25,11 +26,9 @@ class Header extends Component {
               <Link className="nav-link" to="/favoritos">Favoritas</Link>
             </li> 
           </ul>
+
+        <Formulario/>
           
-          <form className="search-form">
-            <input type="text" name="searchData" placeholder="Buscar..." />
-            <button type="submit" className="btn btn-success btn-sm">Buscar</button>
-          </form>
         </nav>
 
       </React.Fragment>
