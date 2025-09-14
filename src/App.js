@@ -28,7 +28,7 @@ function App() {
 
           <Route path='/movies/:tipo' component={Movies} exact={true} />
 
-          <Route path='/buscar' component={SearchResults} />
+          <Route path='/buscar/:pelicula' component={SearchResults} />
 
           <Route component={NotFound} />
 

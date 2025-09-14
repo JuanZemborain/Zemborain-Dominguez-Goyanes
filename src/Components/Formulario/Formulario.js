@@ -10,7 +10,7 @@ class Formulario extends Component {
   evitarSubmit(event) {
     event.preventDefault();
     if (this.state.search.trim()) {
-            this.props.history.push(`/buscar?pelicula=${encodeURIComponent(this.state.search.trim())}`);
+            this.props.history.push(`/buscar/${encodeURIComponent(this.state.search.trim())}`);
     }
   }
 
