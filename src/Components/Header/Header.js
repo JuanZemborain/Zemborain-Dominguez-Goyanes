@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
-import Formulario from '../../Components/Formulario/Formulario'
+import Formulario from '../Formulario/Formulario'
 
 class Header extends Component {
   render() {

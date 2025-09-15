@@ -16,21 +16,21 @@ class SearchResults extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.location.search !== this.props.location.search) {
+    if (prevProps.match.params.pelicula !== this.props.match.params.pelicula) {
       this.buscar();
     }
   }
 
 buscar() {
-  const query = (this.props.match.params.pelicula || "").trim();
+  const query = (this.props.match.params.pelicula);
   
   if (!query) { 
     this.setState({ results: [] }) 
 } else {
   fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=es-ES&include_adult=false&page=1&query=${encodeURIComponent(query)}`)
     .then(response => response.json())
-    .then(data => this.setState({ results: data.results ? data.results : [] }))
-    .catch(() => this.setState({ results: [] }));
+    .then(data => this.setState({results: data.results}))
+    .catch(() => this.setState({results: []}));
 }}
 
   render() {
@@ -40,7 +40,7 @@ buscar() {
     return (
       <section>
         <h2>Resultados para “{query}”</h2>
-        {query.trim() === "" ? <p>Ingresá una búsqueda.</p> : results.length === 0 ? <p>No encontramos resultados.</p> : <ListaCard data={results} />}
+        {results.length === 0 ? <p>No encontramos resultados.</p> : <ListaCard data={results} />}
       </section>
     );
   }
