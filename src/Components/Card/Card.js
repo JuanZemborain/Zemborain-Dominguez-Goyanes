@@ -7,13 +7,39 @@ class Card extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            descripcion: false
+            descripcion: false,
+            favoritos: false
         }
     }
 
     componentDidMount() {
         console.log(this.props);
         
+    }
+
+    botonFavorito(){
+        if (this.state.favoritos === false) {
+            this.setState({
+                favoritos: true,
+                verFavoritos: "Sacar de Favoritos",
+                arrayFavoritos: this.state.arrayFavoritos.includes(this.props.id)
+            })
+        } else {
+            this.setState({
+                favoritos: false,
+                verFavoritos: "Agregar a favoritos"
+            })
+        }
+    }
+
+    agregarFavoritos(id) {
+        let recuperoStorage = localStorage.getItem("Favoritos")
+        if (recuperoStorage) {
+            let favoritosRecuperados = JSON.parse(recuperoStorage)
+            favoritosRecuperados.push(id)
+            let favoritosString = JSON.stringify(favoritosRecuperados)
+            localStorage.setItem("Favoritos", favoritosString)
+        }
     }
 
     render() {
@@ -26,6 +52,8 @@ class Card extends Component {
                     {this.state.descripcion ? <p className="card-text">{this.props.data.overview}</p> : '' }
                     <Link to={`/detalle/movie/${this.props.data.id}`} className="btn btn-primary">Ver más</Link>
                     <a href="" className="btn alert-primary">🩶</a>
+                    <button className="btn alert-primary" onClick={()=> this.agregarFavoritos(this.props.id)}>
+                        {this.state.verFavoritos ? "Sacar de Favoritos" : "Agregar a favoritos"}</button>
                 </div>
             </article>
         )

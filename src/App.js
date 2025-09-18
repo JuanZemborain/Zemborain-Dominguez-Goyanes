@@ -9,6 +9,7 @@ import Detalle from "./Screens/Detalle/Detalle";
 import SearchResults from "./Screens/SearchResults/SearchResults";
 import MoviesPopular from "./Screens/MoviesPopular/MoviesPopular";
 import MoviesNow from "./Screens/MoviesNow/MoviesNow";
+import Favoritos from "./Screens/Favoritos/Favoritos"
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
           <Route path='/movies/:tipo' component={Movies} exact={true} />
 
           <Route path='/buscar/:pelicula' component={SearchResults} />
+
+          <Route path="/favoritos" exact={true} component={Favoritos}/>
 
           <Route component={NotFound} />
 
