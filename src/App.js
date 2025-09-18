@@ -7,7 +7,7 @@ import Home from "./Screens/Home/Home";
 import Movies from "./Screens/Movies/Movies"
 import Detalle from "./Screens/Detalle/Detalle";
 import SearchResults from "./Screens/SearchResults/SearchResults";
-import MoviesPopular from "./Screens/MoviesPopular/Moviesp";
+import MoviesPopular from "./Screens/MoviesPopular/MoviesPopular";
 import MoviesNow from "./Screens/MoviesNow/MoviesNow";
 
 function App() {
