@@ -4,8 +4,6 @@ import ListaCard from "../../Components/ListaCard/ListaCard";
 import {Link} from 'react-router-dom'
 import React from "react";
 
-let apiKey = '68c410ee39188689628bac0d94261464'
-
 class CargarMas extends Component{
     constructor(props){
         super(props);

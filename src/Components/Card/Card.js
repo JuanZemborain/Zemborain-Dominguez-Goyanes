@@ -2,44 +2,58 @@ import { Component } from "react";
 import './Card.css'
 import { Link } from "react-router-dom";
 
-
 class Card extends Component {
     constructor(props) {
         super(props);
         this.state = {
             descripcion: false,
-            favoritos: false
+            favoritos: false,
+            verFavoritos: "Agregar a favoritos",
+            id: this.props.data.id
         }
     }
 
     componentDidMount() {
-        console.log(this.props);
-        
-    }
-
-    botonFavorito(){
-        if (this.state.favoritos === false) {
+        let recuperoStorage = localStorage.getItem("Favoritos");
+        let favoritosRecuperados = recuperoStorage ? JSON.parse(recuperoStorage) : [];
+        if (favoritosRecuperados.includes(this.state.id)) {
             this.setState({
                 favoritos: true,
-                verFavoritos: "Sacar de Favoritos",
-                arrayFavoritos: this.state.arrayFavoritos.includes(this.props.id)
-            })
+                verFavoritos: "Sacar de Favoritos"
+            });
+        }
+    }
+
+    botonFavorito() {
+        if (this.state.favoritos === false) {
+            this.agregarFavoritos();
+            this.setState({
+                favoritos: true,
+                verFavoritos: "Sacar de Favoritos"
+            });
         } else {
+            this.sacarFavoritos();
             this.setState({
                 favoritos: false,
                 verFavoritos: "Agregar a favoritos"
-            })
+            });
         }
     }
 
-    agregarFavoritos(id) {
-        let recuperoStorage = localStorage.getItem("Favoritos")
-        if (recuperoStorage) {
-            let favoritosRecuperados = JSON.parse(recuperoStorage)
-            favoritosRecuperados.push(id)
-            let favoritosString = JSON.stringify(favoritosRecuperados)
-            localStorage.setItem("Favoritos", favoritosString)
+    agregarFavoritos() {        
+        let recuperoStorage = localStorage.getItem("Favoritos");
+        let favoritosRecuperados = recuperoStorage ? JSON.parse(recuperoStorage) : [];
+        if (!favoritosRecuperados.includes(this.state.id)) {
+            favoritosRecuperados.push(this.state.id);
+            localStorage.setItem("Favoritos", JSON.stringify(favoritosRecuperados));
         }
+    }
+
+    sacarFavoritos() {
+        let recuperoStorage = localStorage.getItem("Favoritos");
+        let favoritosRecuperados = recuperoStorage ? JSON.parse(recuperoStorage) : [];
+        favoritosRecuperados = favoritosRecuperados.filter(favId => favId !== this.state.id);
+        localStorage.setItem("Favoritos", JSON.stringify(favoritosRecuperados));
     }
 
     render() {
@@ -52,8 +66,9 @@ class Card extends Component {
                     {this.state.descripcion ? <p className="card-text">{this.props.data.overview}</p> : '' }
                     <Link to={`/detalle/${this.props.tipo}/${this.props.data.id}`} className="btn btn-primary">Ver más</Link>
                     <a href="" className="btn alert-primary">🩶</a>
-                    <button className="btn alert-primary" onClick={()=> this.agregarFavoritos(this.props.id)}>
-                        {this.state.verFavoritos ? "Sacar de Favoritos" : "Agregar a favoritos"}</button>
+                    <button className="btn alert-primary" onClick={() => this.botonFavorito()}>
+                        {this.state.verFavoritos}
+                    </button>
                 </div>
             </article>
         )
