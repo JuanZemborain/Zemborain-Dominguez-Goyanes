@@ -21,11 +21,11 @@ class Header extends Component {
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/movies/populares">Películas Populares</Link>
+              <Link className="nav-link" to="/movies/popular">Películas Populares</Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/movies/now-playing">Películas Now Playing</Link>
+              <Link className="nav-link" to="/movies/now_playing">Películas Now Playing</Link>
             </li>
 
             <li className="nav-item">
