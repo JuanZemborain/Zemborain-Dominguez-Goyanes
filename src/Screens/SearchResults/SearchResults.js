@@ -7,7 +7,9 @@ class SearchResults extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-        results: [] 
+        results: [],
+        loading: true,
+        
     };
   }
 
@@ -16,31 +18,33 @@ class SearchResults extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.match.params.pelicula !== this.props.match.params.pelicula) {
+    if (prevProps.match.params.busqueda !== this.props.match.params.busqueda) {
       this.buscar();
     }
   }
 
 buscar() {
-  const query = (this.props.match.params.pelicula);
+  const query = (this.props.match.params.busqueda);
   
+  const tipo = (this.props.match.params.tipo)
   if (!query) { 
     this.setState({ results: [] }) 
 } else {
-  fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=es-ES&include_adult=false&page=1&query=${encodeURIComponent(query)}`)
+  fetch(`https://api.themoviedb.org/3/search/${tipo}?api_key=${apiKey}&language=es-ES&include_adult=false&page=1&query=${encodeURIComponent(query)}`)
     .then(response => response.json())
-    .then(data => this.setState({results: data.results}))
+    .then(data => this.setState({results: data.results, loading: false}))
     .catch(() => this.setState({results: []}));
 }}
 
   render() {
-    const query = (this.props.match.params.pelicula || "").trim();
+    const query = (this.props.match.params.busqueda || "").trim();
     const results = this.state.results;
+
 
     return (
       <section>
         <h2>Resultados para “{query}”</h2>
-        {results.length === 0 ? <p>No encontramos resultados.</p> : <ListaCard data={results} />}
+        {this.state.loading ? <p> Cargando...</p>:results.length === 0 ? <p>No encontramos resultados.</p> : <ListaCard data={results} tipo= "tv" />}
       </section>
     );
   }

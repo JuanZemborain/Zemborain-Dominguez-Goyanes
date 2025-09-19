@@ -27,7 +27,7 @@ class Header extends Component {
             </li> 
           </ul>
 
-        <Formulario/>
+        
           
         </nav>
 

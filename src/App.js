@@ -21,7 +21,7 @@ function App() {
         <Switch>
           <Route path='/' component={Home} exact={true} />
           
-          <Route path='/detalle/movie/:id' component={Detalle} exact={true} />
+          <Route path='/detalle/:tipo/:id' component={Detalle} exact={true} />
 
           <Route path='/movies/popular' component={MoviesPopular} exact={true} />
 
@@ -29,7 +29,7 @@ function App() {
 
           <Route path='/movies/:tipo' component={Movies} exact={true} />
 
-          <Route path='/buscar/:pelicula' component={SearchResults} />
+          <Route path='/buscar/:tipo/:busqueda' component={SearchResults} />
 
           <Route path="/favoritos" exact={true} component={Favoritos}/>
 
