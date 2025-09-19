@@ -18,14 +18,20 @@ class Favoritos extends Component {
         if (favoritos.length === 0) {
             this.setState({ cargando: false });
         } else {
+            let peliculas = [];
+            let cargadas = 0;
             favoritos.map(id => {
                 fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
                     .then(res => res.json())
                     .then(data => {
-                        this.setState(prevState => ({
-                            peliculasFavoritas: [...prevState.peliculasFavoritas, data],
-                            cargando: false
-                        }));
+                        peliculas.push(data);
+                        cargadas = cargadas + 1;
+                        if (cargadas === favoritos.length) {
+                            this.setState({
+                                peliculasFavoritas: peliculas,
+                                cargando: false
+                            });
+                        }
                     });
             });
         }
@@ -50,4 +56,3 @@ class Favoritos extends Component {
 }
 
 export default Favoritos;
-
