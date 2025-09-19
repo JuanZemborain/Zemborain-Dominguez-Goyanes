@@ -27,9 +27,10 @@ class Formulario extends Component {
     return (
       <form onSubmit={(event) => this.evitarSubmit(event)} className="search-form my-3">
         <input type="text" placeholder="Buscar películas..." value={this.state.search} onChange={(event) => this.controlarCambios(event)} className="form-control form-control-sm" style={{ display: 'inline-block', width: 260, marginRight: 8 }} />
-        < label>Movie </label> <input onChange={(e) => this.controlarTipo(e)} type="radio" name="tipo" value="movie" />
-        < label> Series</label><input onChange={(e) => this.controlarTipo(e)} type="radio" name="tipo" value="tv" />
-             
+         <select value={this.state.tipo} onChange={(e) => this.controlarTipo(e)}>
+          <option value="movie">Movies</option>
+          <option value="tv">Series</option>
+        </select>
         <button type="submit" className="btn btn-success btn-sm">Buscar</button>
       </form>
     );

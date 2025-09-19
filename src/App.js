@@ -10,6 +10,8 @@ import SearchResults from "./Screens/SearchResults/SearchResults";
 import MoviesPopular from "./Screens/MoviesPopular/MoviesPopular";
 import MoviesNow from "./Screens/MoviesNow/MoviesNow";
 import Favoritos from "./Screens/Favoritos/Favoritos"
+import SeriesTop from "./Screens/SeriesTop/SeriesTop"
+import SeriesAiring from "./Screens/SeriesAiring/SeriesAiring"
 
 function App() {
   return (
@@ -23,9 +25,13 @@ function App() {
           
           <Route path='/detalle/:tipo/:id' component={Detalle} exact={true} />
 
-          <Route path='/movies/popular' component={MoviesPopular} exact={true} />
+          <Route path='/movies/populares' component={MoviesPopular} exact={true} />
 
-          <Route path='/movies/now_playing' component={MoviesNow} exact={true} />
+          <Route path='/movies/now-playing' component={MoviesNow} exact={true} />
+
+          <Route path='/series/top-rating' component={SeriesTop} exact={true} />
+
+          <Route path='/series/airing-today' component={SeriesAiring} exact={true} />
 
           <Route path='/movies/:tipo' component={Movies} exact={true} />
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
+import Formulario from "../../Components/Formulario/Formulario"
 
 
 class Header extends Component {
@@ -20,15 +21,27 @@ class Header extends Component {
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/movies/">Películas</Link>
+              <Link className="nav-link" to="/movies/populares">Películas Populares</Link>
             </li>
+
             <li className="nav-item">
-              <Link className="nav-link" to="/series/">Series</Link>
+              <Link className="nav-link" to="/movies/now-playing">Películas Now Playing</Link>
+            </li>
+
+            <li className="nav-item">
+              <Link className="nav-link" to="/series/top-rating">Series Top Rating</Link>
+            </li>
+
+            <li className="nav-item">
+              <Link className="nav-link" to="/series/airing-today">Series Airing Today</Link>
             </li>
 
             <li className="nav-item">
               <Link className="nav-link" to="/favoritos">Favoritas</Link>
             </li> 
+
+            <Formulario/>
+
           </ul>          
         </nav>
 
