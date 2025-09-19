@@ -25,9 +25,9 @@ function App() {
           
           <Route path='/detalle/:tipo/:id' component={Detalle} exact={true} />
 
-          <Route path='/movies/populares' component={MoviesPopular} exact={true} />
+          <Route path='/movies/popular' component={MoviesPopular} exact={true} />
 
-          <Route path='/movies/now-playing' component={MoviesNow} exact={true} />
+          <Route path='/movies/now_playing' component={MoviesNow} exact={true} />
 
           <Route path='/series/top-rating' component={SeriesTop} exact={true} />
 
