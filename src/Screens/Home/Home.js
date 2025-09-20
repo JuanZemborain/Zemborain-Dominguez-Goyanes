@@ -36,10 +36,10 @@ class Home extends Component{
         return(
             <React.Fragment>
                 <h2 class="alert alert-primary">Popular movies this week <Link  to='/movies/popular' class='btn btn-primary'> Ver mas peliculas populares </Link>  </h2>
-                {this.state.loaderPopularMovies ? <p>Cargando...</p> : <ListaCard data={this.state.popularMovies.slice(0,5)} />}
+                {this.state.loaderPopularMovies ? <p>Cargando...</p> : <ListaCard data={this.state.popularMovies.slice(0,5)} tipo="movie" />}
                 
                 <h2 class="alert alert-primary">Movies now playing <Link class='btn btn-primary' to='/movies/now_playing'> Ver mas peliculas nuevas </Link>  </h2>
-                {this.state.loaderNowMovies ? <p>Cargando...</p> : <ListaCard data={this.state.nowMovies.slice(0,5)} />}
+                {this.state.loaderNowMovies ? <p>Cargando...</p> : <ListaCard data={this.state.nowMovies.slice(0,5)} tipo="movie" />}
 
 
             </React.Fragment>
