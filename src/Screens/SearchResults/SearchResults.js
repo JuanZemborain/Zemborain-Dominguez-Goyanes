@@ -20,6 +20,15 @@ class SearchResults extends Component {
       .catch(() => this.setState({results: []}));
 }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.busqueda !== this.props.match.params.busqueda || prevProps.match.params.tipo !== this.props.match.params.tipo) {
+      fetch(`https://api.themoviedb.org/3/search/${this.props.match.params.tipo}?api_key=${apiKey}&language=es-ES&include_adult=false&page=1&query=${(this.props.match.params.busqueda)}`)
+        .then(response => response.json())
+        .then(data => this.setState({results: data.results, loading: false}))
+        .catch(() => this.setState({results: []}));
+    }
+  }
+
   render() {
 
     return (

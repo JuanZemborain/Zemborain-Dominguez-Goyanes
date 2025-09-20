@@ -68,7 +68,7 @@ class CargarMas extends Component{
 
                 <button onClick={() => this.cargarMas()} className="btn btn-primary">Cargar Más</button>
 
-                {this.state.loaderMovies ? <p>Cargando...</p> : <ListaCard data={peliculasAMostrar} />}
+                {this.state.loaderMovies ? <p>Cargando...</p> : <ListaCard data={peliculasAMostrar} tipo = {this.props.tipo} />}
 
             </React.Fragment>
         )

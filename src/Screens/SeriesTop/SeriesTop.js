@@ -14,7 +14,7 @@ class SeriesTop extends Component{
                 
                 <h2 class="alert alert-primary">Series Top Rating</h2>
 
-                <CargarMas URL = "https://api.themoviedb.org/3/tv/top_rated?api_key=68c410ee39188689628bac0d94261464"/>
+                <CargarMas URL = "https://api.themoviedb.org/3/tv/top_rated?api_key=68c410ee39188689628bac0d94261464" tipo = "tv"/>
 
             </React.Fragment>
         )

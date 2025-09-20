@@ -14,7 +14,7 @@ class SeriesAiring extends Component{
                 
                 <h2 class="alert alert-primary">Series Airing Today</h2>
 
-                <CargarMas URL = "https://api.themoviedb.org/3/tv/airing_today?api_key=68c410ee39188689628bac0d94261464"/>
+                <CargarMas URL = "https://api.themoviedb.org/3/tv/airing_today?api_key=68c410ee39188689628bac0d94261464" tipo = "tv"/>
 
             </React.Fragment>
         )
