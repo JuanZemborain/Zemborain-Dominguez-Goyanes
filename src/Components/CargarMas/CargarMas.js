@@ -4,30 +4,44 @@ import ListaCard from "../../Components/ListaCard/ListaCard";
 import {Link} from 'react-router-dom'
 import React from "react";
 
+
 class CargarMas extends Component{
     constructor(props){
         super(props);
         this.state = {
             Movies: [],
             loaderMovies: true,
-            masPeliculas: 5,
-            search: " ",
+            error: null,
+            search: "",
+            pagina: 1,
         }
     }
 
     componentDidMount(){
-        fetch(this.props.URL)
-        .then(res => res.json())
+        fetch(`${this.props.URL}&page=${this.state.pagina}`)
+        .then(response => response.json())
         .then(data => {
             this.setState({Movies: data.results, loaderMovies: false})
         })
-
+        .catch(error => this.setState({ error, loading: false }));
     }
 
-    cargarMas = () => {
-        this.setState({
-            masPeliculas: this.state.masPeliculas + 5 
-        });
+    cargarMas () {
+        
+        const proximaPagina = this.state.pagina + 1
+
+        fetch(`${this.props.URL}&page=${proximaPagina}`)
+            .then(response => response.json())
+            .then(data => {
+
+                let masPeliculas = this.state.Movies.slice();
+                masPeliculas = masPeliculas.concat(data.results)
+
+                this.setState({Movies: masPeliculas, 
+                                loaderMovies: false,
+                                pagina: proximaPagina})
+            })
+            .catch(error => this.setState({ error, loading: false }));
     }
 
     evitarSubmit(event){
@@ -41,9 +55,8 @@ class CargarMas extends Component{
     render(){
         
         const texto = this.state.search.toLowerCase();
-        const peliculasFiltro = this.state.Movies.filter(pelicula => pelicula.title.toLowerCase().includes(texto))
-
-        const peliculasAMostrar = peliculasFiltro.slice(0, this.state.masPeliculas) 
+        const peliculasAMostrar = this.state.Movies.filter(pelicula => 
+                            (pelicula.title || pelicula.name || "").toLowerCase().includes(texto))
   
 
         return(
@@ -53,7 +66,7 @@ class CargarMas extends Component{
                     <input type="text" onChange={(event)=>this.controlarCambios(event)} value={this.state.search}/>
                 </form>
 
-                <button onClick={this.cargarMas} className="btn btn-primary">Cargar Más</button>
+                <button onClick={() => this.cargarMas()} className="btn btn-primary">Cargar Más</button>
 
                 {this.state.loaderMovies ? <p>Cargando...</p> : <ListaCard data={peliculasAMostrar} />}
 

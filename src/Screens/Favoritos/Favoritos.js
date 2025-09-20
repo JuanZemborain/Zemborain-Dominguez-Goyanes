@@ -40,7 +40,7 @@ class Favoritos extends Component {
     render() {
         return (
             <React.Fragment>
-                <h2 className="alert alert-primary">Tus películas favoritas</h2>
+                <h2 className="alert alert-primary">Your favorites movies</h2>
                 {this.state.cargando ? <p>Cargando...</p> : 
                     this.state.peliculasFavoritas.length === 0 ? 
                         <p>No tienes películas favoritas.</p> :

@@ -37,7 +37,7 @@ class Header extends Component {
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/favoritos">Favoritas</Link>
+              <Link className="nav-link" to="/favoritos">Favorites</Link>
             </li> 
 
             <Formulario/>
