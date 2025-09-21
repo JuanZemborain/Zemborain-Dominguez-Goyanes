@@ -1,23 +1,25 @@
-nav {
-    display: grid;
-    grid-template-columns: 1fr;
-    background-color: #eee;
-    border-radius: 4px;
-    margin-bottom: 20px;
-}
-.nav {
-    margin: 0 !important;
-}
-.nav a{
-    color: #444;
-    text-decoration: none;
-}
-.nav a:hover{
-    font-weight: bold;
+nav{
+  background:#eee;
+  border-radius:4px;
+  margin-bottom:20px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding:10px 12px;
 }
 
-@media(min-width: 765px){
-    nav {
-        grid-template-columns: 4fr 3fr;
-    }
+.nav{
+  margin:0 !important;
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
 }
+
+.nav a{
+  color:#444;
+  text-decoration:none;
+}
+.nav a:hover{ font-weight:bold; }
+
+/* Form centrado debajo */
+nav form{ align-self:center; }

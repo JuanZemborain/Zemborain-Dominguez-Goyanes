@@ -40,9 +40,12 @@ class Header extends Component {
               <Link className="nav-link" to="/favoritos">Favorites</Link>
             </li> 
 
-            <Formulario/>
-
           </ul>          
+
+          <div className="header__search">
+            <Formulario />
+          </div>
+          
         </nav>
 
       </React.Fragment>
