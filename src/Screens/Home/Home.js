@@ -12,8 +12,10 @@ class Home extends Component{
         this.state = {
             popularMovies: [],
             nowMovies: [],
+            seriesTopRating: [],
+            seriesAiring: [],
             loaderNowMovies: true,
-            loaderPopularMovies: true
+            loaderPopularMovies: true,
         }
     }
 
@@ -30,6 +32,25 @@ class Home extends Component{
             this.setState({nowMovies: data.results, loaderNowMovies: false})
         })
 
+        fetch(`https://api.themoviedb.org/3/tv/top_rated?api_key=${apiKey}`)
+        .then(res => res.json())
+        .then(data => {
+            this.setState({seriesTopRating: data.results, loaderPopularMovies: false})
+            
+            
+        })
+
+        fetch(`https://api.themoviedb.org/3/tv/airing_today?api_key=${apiKey}`)
+        .then(res => res.json())
+        .then(data => {
+            this.setState({seriesAiring: data.results, loaderNowMovies: false})
+            
+            
+        })
+
+
+
+
     }
 
     render(){
@@ -41,6 +62,14 @@ class Home extends Component{
                 <h2 class="alert alert-primary">Movies now playing <Link class='btn btn-primary' to='/movies/now_playing'> Ver mas peliculas nuevas </Link>  </h2>
                 {this.state.loaderNowMovies ? <p>Cargando...</p> : <ListaCard data={this.state.nowMovies.slice(0,4)} tipo="movie" />}
 
+                <h2 class="alert alert-primary">Series top rated <Link  to='/series/top-rating' class='btn btn-primary'> Ver mas series top rated </Link>  </h2>
+                {this.state.loaderPopularMovies ? <p>Cargando...</p> : <ListaCard data={this.state.seriesTopRating.slice(0,4)} tipo="tv" />}
+                
+                <h2 class="alert alert-primary">Series airing today <Link class='btn btn-primary' to='/series/airing-today'> Ver mas series airing today </Link>  </h2>
+                {this.state.loaderNowMovies ? <p>Cargando...</p> : <ListaCard data={this.state.seriesAiring.slice(0,4)} tipo="tv" />}
+
+
+                
 
             </React.Fragment>
         )
