@@ -34,7 +34,7 @@ class SearchResults extends Component {
     return (
       <section>
         <h2>Resultados para “{this.props.match.params.busqueda}”</h2>
-        {this.state.loading ? <p> Cargando...</p> : this.state.results.length === 0 ? <p>No encontramos resultados.</p> : <ListaCard data={this.state.results}/>}
+        {this.state.loading ? <p> Cargando...</p> : this.state.results.length === 0 ? <p>No encontramos resultados.</p> : <ListaCard data={this.state.results} tipo={this.props.match.params.tipo}/>}
       </section>
     );
   }
