@@ -57,16 +57,16 @@ class Home extends Component{
         return(
             <React.Fragment>
                 <h2 class="alert alert-primary">Popular movies this week <Link  to='/movies/popular' class='btn btn-primary'> Ver mas peliculas populares </Link>  </h2>
-                {this.state.loaderPopularMovies ? <p>Cargando...</p> : <ListaCard data={this.state.popularMovies.slice(0,4)} tipo="movie" />}
+                {this.state.loaderPopularMovies ? <p>Cargando...</p> : <ListaCard data={this.state.popularMovies.filter(idx < 4)} tipo="movie" />}
                 
                 <h2 class="alert alert-primary">Movies now playing <Link class='btn btn-primary' to='/movies/now_playing'> Ver mas peliculas nuevas </Link>  </h2>
-                {this.state.loaderNowMovies ? <p>Cargando...</p> : <ListaCard data={this.state.nowMovies.slice(0,4)} tipo="movie" />}
+                {this.state.loaderNowMovies ? <p>Cargando...</p> : <ListaCard data={this.state.nowMovies.filter(idx < 4)} tipo="movie" />}
 
                 <h2 class="alert alert-primary">Series top rated <Link  to='/series/top-rating' class='btn btn-primary'> Ver mas series top rated </Link>  </h2>
-                {this.state.loaderPopularMovies ? <p>Cargando...</p> : <ListaCard data={this.state.seriesTopRating.slice(0,4)} tipo="tv" />}
+                {this.state.loaderPopularMovies ? <p>Cargando...</p> : <ListaCard data={this.state.seriesTopRating.filter(idx < 4)} tipo="tv" />}
                 
                 <h2 class="alert alert-primary">Series airing today <Link class='btn btn-primary' to='/series/airing-today'> Ver mas series airing today </Link>  </h2>
-                {this.state.loaderNowMovies ? <p>Cargando...</p> : <ListaCard data={this.state.seriesAiring.slice(0,4)} tipo="tv" />}
+                {this.state.loaderNowMovies ? <p>Cargando...</p> : <ListaCard data={this.state.seriesAiring.filter(idx < 4)} tipo="tv" />}
 
 
                 
