@@ -10,13 +10,27 @@ class Detalle extends Component {
       loading: true,
       favoritos: false,
       verFavoritos: "Agregar a favoritos",
+      id: this.props.match.params.id,
+      tipo: this.props.match.params.tipo
     }
   }
 
   componentDidMount() {
-    fetch(`https://api.themoviedb.org/3/${this.props.match.params.tipo}/${this.props.match.params.id}?api_key=${apiKey}&language=es-ES`)
+    fetch(`https://api.themoviedb.org/3/${this.props.match.params.tipo}/${this.props.match.params.id}?api_key=${apiKey}`)
       .then((response) => response.json())
-      .then((data) => {this.setState({ item: data, loading: false })})
+      .then((data) => {
+
+        let recuperoStorage = localStorage.getItem("Favoritos");
+        let favoritosRecuperados = JSON.parse(recuperoStorage) || [];
+        let estaEnFavoritos = favoritosRecuperados.includes(this.state.id);
+
+        this.setState({
+          item: data,
+          loading: false,
+          favoritos: estaEnFavoritos,
+          verFavoritos: estaEnFavoritos ? "Sacar de Favoritos" : "Agregar a favoritos"
+        });
+      })
       .catch((error) => {console.log('El error fue: ' + error)})
   }
 
@@ -39,6 +53,11 @@ class Detalle extends Component {
   agregarFavoritos() {        
       let recuperoStorage = localStorage.getItem("Favoritos");
       let favoritosRecuperados = recuperoStorage ? JSON.parse(recuperoStorage) : [];
+
+      // elimino el mismo id si existía, luego lo agrego
+        favoritosRecuperados = favoritosRecuperados.filter(favId => favId !== this.state.id);
+        favoritosRecuperados.push(this.state.id);
+
       if (!favoritosRecuperados.includes(this.state.id)) {
           favoritosRecuperados.push(this.state.id);
           localStorage.setItem("Favoritos", JSON.stringify(favoritosRecuperados));

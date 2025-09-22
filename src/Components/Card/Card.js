@@ -16,6 +16,7 @@ class Card extends Component {
     componentDidMount() {
         let recuperoStorage = localStorage.getItem("Favoritos");
         let favoritosRecuperados = recuperoStorage ? JSON.parse(recuperoStorage) : [];
+
         if (favoritosRecuperados.includes(this.state.id)) {
             this.setState({
                 favoritos: true,
@@ -48,6 +49,21 @@ class Card extends Component {
             localStorage.setItem("Favoritos", JSON.stringify(favoritosRecuperados));
         }
     }
+
+    agregarFavoritos() {
+    let recuperoStorage = localStorage.getItem("Favoritos");
+    let favoritosRecuperados = recuperoStorage ? JSON.parse(recuperoStorage) : [];
+
+    if (!favoritosRecuperados.includes(this.state.id)) {
+        favoritosRecuperados.push(this.state.id);
+
+        // elimino el mismo id si existía, luego agrego
+        favoritosRecuperados = favoritosRecuperados.filter(favId => favId !== this.state.id);
+        favoritosRecuperados.push(this.state.id);
+
+        localStorage.setItem("Favoritos", JSON.stringify(favoritosRecuperados));
+    }
+}
 
     sacarFavoritos() {
         let recuperoStorage = localStorage.getItem("Favoritos");
