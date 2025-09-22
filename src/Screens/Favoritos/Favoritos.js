@@ -9,26 +9,34 @@ class Favoritos extends Component {
         super(props);
         this.state = {
             peliculasFavoritas: [],
+            seriesFavoritas: [],
             cargando: true
         };
     }
 
     componentDidMount() {
-        let favoritos = JSON.parse(localStorage.getItem("Favoritos")) || [];
+        let recuperoStorage = localStorage.getItem("Favoritos")
+        let favoritos = JSON.parse(recuperoStorage) || [];
         if (favoritos.length === 0) {
             this.setState({ cargando: false });
         } else {
             let peliculas = [];
+            let series = [];
             let cargadas = 0;
-            favoritos.map(id => {
-                fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
+            favoritos.map(favorito => {
+                fetch(`https://api.themoviedb.org/3/${favorito.tipo}/${favorito.id}?api_key=${apiKey}`)
                     .then(res => res.json())
                     .then(data => {
-                        peliculas.push(data);
+                        if (favorito.tipo === "movie") {
+                            peliculas.push(data);
+                        } else if (favorito.tipo === "tv") {
+                            series.push(data);
+                        }                        
                         cargadas = cargadas + 1;
                         if (cargadas === favoritos.length) {
                             this.setState({
                                 peliculasFavoritas: peliculas,
+                                seriesFavoritas: series,
                                 cargando: false
                             });
                         }
@@ -50,6 +58,18 @@ class Favoritos extends Component {
                             )}
                         </section>
                 }
+
+                <h2 className="alert alert-primary">Your favorites series</h2>
+                {this.state.cargando ? <p>Cargando...</p> : 
+                    this.state.seriesFavoritas.length === 0 ? 
+                        <p>No tienes series favoritas.</p> :
+                        <section className="row cards" id="series">
+                            {this.state.seriesFavoritas.map((serie, idx) => 
+                                <Card data={serie} key={idx} tipo="tv" />
+                            )}
+                        </section>
+                }
+
             </React.Fragment>
         );
     }

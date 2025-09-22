@@ -16,8 +16,10 @@ class Card extends Component {
     componentDidMount() {
         let recuperoStorage = localStorage.getItem("Favoritos");
         let favoritosRecuperados = recuperoStorage ? JSON.parse(recuperoStorage) : [];
+        const repetidos = favoritosRecuperados.filter(favorito => 
+                        favorito.id == this.state.id && favorito.tipo == this.props.tipo)
 
-        if (favoritosRecuperados.includes(this.state.id)) {
+        if (repetidos.length > 0) {
             this.setState({
                 favoritos: true,
                 verFavoritos: "Sacar de Favoritos"
@@ -41,26 +43,17 @@ class Card extends Component {
         }
     }
 
-    agregarFavoritos() {        
-        let recuperoStorage = localStorage.getItem("Favoritos");
-        let favoritosRecuperados = recuperoStorage ? JSON.parse(recuperoStorage) : [];
-        if (!favoritosRecuperados.includes(this.state.id)) {
-            favoritosRecuperados.push(this.state.id);
-            localStorage.setItem("Favoritos", JSON.stringify(favoritosRecuperados));
-        }
-    }
 
     agregarFavoritos() {
     let recuperoStorage = localStorage.getItem("Favoritos");
     let favoritosRecuperados = recuperoStorage ? JSON.parse(recuperoStorage) : [];
-
-    if (!favoritosRecuperados.includes(this.state.id)) {
-        favoritosRecuperados.push(this.state.id);
-
-        // elimino el mismo id si existía, luego agrego
-        favoritosRecuperados = favoritosRecuperados.filter(favId => favId !== this.state.id);
-        favoritosRecuperados.push(this.state.id);
-
+    const nuevoFavorito = {id: this.state.id, tipo: this.props.tipo}
+    const repetidos = favoritosRecuperados.filter(favorito => 
+                        favorito.id === nuevoFavorito.id && favorito.tipo === nuevoFavorito.tipo)
+        
+    if (repetidos.length === 0) {
+        
+        favoritosRecuperados.push(nuevoFavorito);
         localStorage.setItem("Favoritos", JSON.stringify(favoritosRecuperados));
     }
 }
@@ -68,7 +61,7 @@ class Card extends Component {
     sacarFavoritos() {
         let recuperoStorage = localStorage.getItem("Favoritos");
         let favoritosRecuperados = recuperoStorage ? JSON.parse(recuperoStorage) : [];
-        favoritosRecuperados = favoritosRecuperados.filter(favId => favId !== this.state.id);
+        favoritosRecuperados = favoritosRecuperados.filter(favorito => !(favorito.id === this.state.id && favorito.tipo === this.props.tipo));
         localStorage.setItem("Favoritos", JSON.stringify(favoritosRecuperados));
     }
 

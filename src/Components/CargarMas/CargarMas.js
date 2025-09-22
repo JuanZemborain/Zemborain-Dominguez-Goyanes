@@ -34,7 +34,7 @@ class CargarMas extends Component{
             .then(response => response.json())
             .then(data => {
 
-                let masPeliculas = this.state.Movies.slice();
+                let masPeliculas = this.state.Movies;
                 masPeliculas = masPeliculas.concat(data.results)
 
                 this.setState({Movies: masPeliculas, 
