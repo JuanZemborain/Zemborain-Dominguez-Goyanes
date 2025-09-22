@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+/* Mobile L (m y s) */
+@media (max-width: 768px) {
+  h1, h2 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+}
+
+/* Mobile M/S */
+@media (max-width: 480px) {
+  body {
+    padding: 0 8px;
+  }
+}
+
+

@@ -1,0 +1,7 @@
+/* Mobile L y mas chicos */
+@media (max-width: 768px) {
+  footer {
+    font-size: 0.8rem;
+    padding: 12px;
+  }
+}

@@ -21,5 +21,23 @@ nav{
 }
 .nav a:hover{ font-weight:bold; }
 
-/* Form centrado debajo */
+
 nav form{ align-self:center; }
+
+/* Mobile L y mas chicos */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+  }
+}
