@@ -49,7 +49,7 @@ class Card extends Component {
     let favoritosRecuperados = recuperoStorage ? JSON.parse(recuperoStorage) : [];
     const nuevoFavorito = {id: this.state.id, tipo: this.props.tipo}
     const repetidos = favoritosRecuperados.filter(favorito => 
-                        favorito.id === nuevoFavorito.id && favorito.tipo === nuevoFavorito.tipo)
+                        favorito.id == nuevoFavorito.id && favorito.tipo == nuevoFavorito.tipo)
         
     if (repetidos.length === 0) {
         
@@ -61,7 +61,7 @@ class Card extends Component {
     sacarFavoritos() {
         let recuperoStorage = localStorage.getItem("Favoritos");
         let favoritosRecuperados = recuperoStorage ? JSON.parse(recuperoStorage) : [];
-        favoritosRecuperados = favoritosRecuperados.filter(favorito => !(favorito.id === this.state.id && favorito.tipo === this.props.tipo));
+        favoritosRecuperados = favoritosRecuperados.filter(favorito => !(favorito.id == this.state.id && favorito.tipo == this.props.tipo));
         localStorage.setItem("Favoritos", JSON.stringify(favoritosRecuperados));
     }
 
