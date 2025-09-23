@@ -71,15 +71,23 @@ class Card extends Component {
                 <img src={`https://image.tmdb.org/t/p/w500/${this.props.data.poster_path}`} className="card-img-top" alt="..." />
                 <div className="cardBody">
                     <h5 className="card-title">{this.props.tipo =="tv" ? this.props.data.name: this.props.data.title}</h5>
-                    <button onClick={() => this.setState({descripcion: !(this.state.descripcion)})} className="btn btn-primary">{this.state.descripcion ? 'Ocultar descripcion' : 'Ver descripcion'}</button>
+
+                    <button className="btn alert-primary" onClick={() => this.setState({descripcion: !(this.state.descripcion)})}>
+                        {this.state.descripcion ? 'Ocultar descripcion' : 'Ver descripcion'}
+                    </button>
+
                     {this.state.descripcion ? <p className="card-text">{this.props.data.overview}</p> : '' }
+
                     <Link to={`/detalle/${this.props.tipo}/${this.props.data.id}`} className="btn btn-primary">Ver más</Link>
-                    <button className="btn alert-primary" onClick={() => this.botonFavorito()}> 
+
+                    <button className="btn alert-primary cora" onClick={() => this.botonFavorito()}> 
                         {this.state.verFavoritos == "Agregar a favoritos" ? '🩶' : '❤️'} 
                     </button>
-                    <button className="btn alert-primary" onClick={() => this.botonFavorito()}>
+
+                    <button className="btn alert-primary add" onClick={() => this.botonFavorito()}>
                         {this.state.verFavoritos}
                     </button>
+                    
                 </div>
             </article>
         )
