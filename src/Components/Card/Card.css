@@ -6,7 +6,7 @@
     margin-bottom: 20px;
     width: 24%;
     background: #fff;
-    border-radius: 10px;
+    border-radius: 13px;
     box-shadow: 0 .45rem 1.75rem 0 rgba(58, 59, 69, .15);
 }
 
@@ -28,9 +28,19 @@ h5{
 }
 
 .single-card .card-text{
-    height: 100px;
+    height: auto;
     overflow: hidden;
 }
+
+.card-text {
+  margin-top: 8px;
+  padding: 14px 16px;
+  font-size: 15px;
+  color: #222;
+  background: rgba(13, 110, 253, 0.08);
+  border-radius: 12px;
+}
+
 /* Mobile L */
 @media (max-width: 425px) {
   .single-card {

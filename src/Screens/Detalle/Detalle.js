@@ -102,7 +102,9 @@ class Detalle extends Component {
                 {<p> <strong> Duración: </strong> {this.state.item.runtime} minutos </p>}
                 <p> <strong> Géneros: </strong> {this.state.item.genres.map((genre) => genre.name).join(", ")} </p>
                 <p> <strong> Sinopsis: </strong> {this.state.item.overview} </p>
-                <a href="" className="btn alert-primary">🩶</a>
+                <button className="btn alert-primary" onClick={() => this.botonFavorito()}> 
+                  {this.state.verFavoritos == "Agregar a favoritos" ? '🩶' : '❤️'} 
+                </button>
                 <button className="btn alert-primary" onClick={() => this.botonFavorito()}>
                   {this.state.verFavoritos}
                 </button>
@@ -127,7 +129,9 @@ class Detalle extends Component {
                 <p> <strong> Fecha de estreno: </strong> {this.state.item.first_air_date}</p>
                 <p> <strong> Géneros: </strong> {this.state.item.genres.map((genre) => genre.name).join(", ")} </p>
                 <p> <strong> Sinopsis: </strong> {this.state.item.overview} </p>
-                <a href="" className="btn alert-primary">🩶</a>
+                <button className="btn alert-primary" onClick={() => this.botonFavorito()}> 
+                  {this.state.verFavoritos == "Agregar a favoritos" ? '🩶' : '❤️'} 
+                </button>
                 <button className="btn alert-primary" onClick={() => this.botonFavorito()}>
                   {this.state.verFavoritos}
                 </button>

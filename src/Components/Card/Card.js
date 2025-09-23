@@ -74,7 +74,9 @@ class Card extends Component {
                     <button onClick={() => this.setState({descripcion: !(this.state.descripcion)})} className="btn btn-primary">{this.state.descripcion ? 'Ocultar descripcion' : 'Ver descripcion'}</button>
                     {this.state.descripcion ? <p className="card-text">{this.props.data.overview}</p> : '' }
                     <Link to={`/detalle/${this.props.tipo}/${this.props.data.id}`} className="btn btn-primary">Ver más</Link>
-                    <a href="" className="btn alert-primary">🩶</a>
+                    <button className="btn alert-primary" onClick={() => this.botonFavorito()}> 
+                        {this.state.verFavoritos == "Agregar a favoritos" ? '🩶' : '❤️'} 
+                    </button>
                     <button className="btn alert-primary" onClick={() => this.botonFavorito()}>
                         {this.state.verFavoritos}
                     </button>
